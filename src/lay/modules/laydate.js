@@ -1563,10 +1563,13 @@
       lay(that.footer).find(ELEM_CONFIRM)[that.endDate ? 'removeClass' : 'addClass'](DISABLED);
     } else if(options.position === 'static'){ //直接嵌套的选中
       setDateTime(true);
-      that.calendar().done().done(null, 'change');
+      that.calendar().done(null, 'change').done();
     } else if(options.type === 'date'){
       setDateTime(true);
-      that.setValue(that.parse()).remove().done();
+      that.done(null, 'change').done();
+      if(that.runRemove){
+        that.setValue(that.parse()).remove();
+      }
     } else if(options.type === 'datetime'){
       setDateTime(true);
       that.calendar().done(null, 'change');
